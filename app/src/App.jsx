@@ -1,9 +1,28 @@
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { Landing, NotFound, Signin, Signup } from "./pages";
+import { Logout, Navbar, ProtectedRoute } from "./layouts";
+import { Home } from "./components";
+import { userData } from "./helper";
 
 function App() {
-
+  const user = userData();
   return (
     <>
-      <h1>hello</h1>
+      <BrowserRouter>
+      <Navbar user={user} />
+        <Routes>
+          <Route path="/*" element={<NotFound />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="home" element={<Home />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
