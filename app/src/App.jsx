@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { Landing, NotFound, Signin, Signup } from "./pages";
-import { Logout, Navbar, ProtectedRoute } from "./layouts";
+import { Logout, Navbar } from "./layouts";
 import { Home } from "./components";
 import { userData } from "./helper";
 
@@ -16,10 +16,8 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
 
-          <Route element={<ProtectedRoute />}>
-            <Route path="home" element={<Home />} />
+            <Route path="/auth/google/callback" element={<Home />} />
             <Route path="/logout" element={<Logout />} />
-          </Route>
 
         </Routes>
       </BrowserRouter>

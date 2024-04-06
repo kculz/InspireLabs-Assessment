@@ -32,7 +32,7 @@ const Header = () => {
             </div>
             { openNav &&
             <ul className="bg-black/50 backdrop-blur md:hidden flex flex-col px-10 gap-4 top-24 ">
-                <li><Link onClick={handleNav} to="/">Home</Link></li>
+                <li><Link onClick={handleNav} to="/home">Home</Link></li>
                 <li><Link onClick={handleNav} to="/albums">Albums</Link></li>
                 <li><Link onClick={handleNav} to="/loads">Find Load</Link></li>
                 <li><Link onClick={handleNav} to="/logout">Logout</Link></li>
