@@ -15,7 +15,7 @@ const Header = () => {
                 <h1 className="text-2xl lg:text-3xl font-semibold"><Link onClick={handleNav} to="home">LoadFix</Link></h1>
                 <div className="flex gap-5 justify-center items-center">
                 <ul className="hidden md:flex gap-5 text-xs lg:text-sm text-white">
-                    <li><Link onClick={handleNav} to="/">Home</Link></li>
+                    <li><Link onClick={handleNav} to="/home">Home</Link></li>
                     <li><Link onClick={handleNav} to="/albums">Albums</Link></li>
                     <li><Link onClick={handleNav} to="/songs">Find Songs</Link></li>
                     <li><Link onClick={handleNav} to="/logout">Logout</Link></li>

@@ -1,3 +1,4 @@
 import Home from "./Home";
+import GoogleCallback from "./GoogleCallback";
 
-export {Home, }
+export {Home, GoogleCallback}
