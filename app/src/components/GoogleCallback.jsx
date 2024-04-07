@@ -63,10 +63,10 @@ const GoogleCallback = () => {
   }, [user, navigate]);
 
   if (loading) {
-    return <h1 className="text-center text-3xl font-bold">Loading...</h1>;
+    return <h1 className="text-center text-3xl font-bold">Redirecting...</h1>;
   } else if(!user){
     return(
-        <p className="text-center text-3xl font-bold">Redirecting...</p>
+        <p className="text-center text-3xl font-bold">Loading...</p>
     )
   }else{
     return (
