@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('track')->nullable()->default(null);
             $table->unsignedBigInteger('artist_id')->nullable();
             $table->unsignedBigInteger('album_id')->nullable();
+            $table->string('cover_art')->nullable();
             $table->timestamps();
 
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('set null');

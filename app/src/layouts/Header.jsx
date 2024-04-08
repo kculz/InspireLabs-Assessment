@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BiMenuAltRight, BiLogOutCircle } from 'react-icons/bi'
-import { MdOutlineClose } from 'react-icons/md'
+import {  BiLogOutCircle } from 'react-icons/bi'
 import { FcMusic } from "react-icons/fc";
+import { CgProfile } from "react-icons/cg";
 
 const Header = () => {
     const [openNav, setOpenNav] = useState(false);
@@ -11,12 +11,12 @@ const Header = () => {
     }
   return (
     <>
-        <header className="z-50 top-0  w-screen h-24 text-off-white bg-blue-700/15 fixed">
+        <header className="z-50 top-0  w-screen h-24  bg-white dark:bg-gray-900 fixed">
             <div className="flex justify-between items-center px-10 md:px-32 h-full w-full">
                 <h1 className="text-2xl lg:text-3xl font-semibold"><Link onClick={handleNav} to="home">
                         <div className="flex items-center justify-center">
                         <FcMusic className="text-7xl font-Luckiest animate-bounce"/>
-                        <h1 className="text-5xl font-Luckiest">Music</h1>
+                        <h1 className="text-5xl text-gray-900 dark:text-white font-Luckiest">Music</h1>
                         </div>
                     </Link></h1>
                 <div className="flex gap-5 justify-center items-center">
@@ -24,21 +24,21 @@ const Header = () => {
                     <li><Link title="logout" onClick={handleNav} to="/logout"><BiLogOutCircle className="text-2xl text-orange-600" /></Link></li>
                 </ul>
                 <div className="block">
-                    <Link to="/profile" className=" py-3 px-5 rounded" onClick={handleNav}>My Profile</Link>
+                    <Link to="/profile" className=" py-3 px-5 rounded text-gray-900 dark:text-white " onClick={handleNav}><CgProfile className="text-2xl text-gray-600 dark:text-white" /></Link>
                 </div>
                 <Link onClick={() => setOpenNav(!openNav)} className="md:hidden block">
                     {
-                        !openNav ? <BiMenuAltRight size={30} className="text-lt-red"/> : <MdOutlineClose size={30} className="text-lt-red"/>
+                        !openNav && <Link to="/logout"><BiLogOutCircle className="text-2xl text-orange-600" /></Link>
                     }
                 </Link>
                 </div>
             </div>
-            { openNav &&
-            <ul className="bg-black/50 backdrop-blur md:hidden flex flex-col px-10 gap-4 top-24 ">
+            {/* { openNav &&
+            <ul className="bg-black/50 backdrop-blur md:hidden flex text-gray-900 dark:text-white  flex-col px-10 gap-4 top-24 ">
                 <li><Link title="logout" onClick={handleNav} to="/logout">Logout</Link></li>
-                <hr className="text-lt-red" />
+                <hr className="text-gray-900" />
             </ul>
-            }
+            } */}
         </header>
     </>
   )

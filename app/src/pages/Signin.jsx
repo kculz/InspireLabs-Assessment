@@ -30,7 +30,7 @@ const Signin = () => {
                       Sign in to your account
                       </h1>
                       <form className="" action="#">
-                          <p onClick={handleGoogleLogin} className="w-full border border-gray-700 text-white px-2.5 py-2.5 rounded my-3 text-sm text-center ">
+                          <p onClick={handleGoogleLogin} className="w-full border border-gray-700 text-white px-2.5 py-2.5 cursor-pointer rounded my-3 text-sm text-center ">
                               <div className="flex gap-3 justify-center items-center">
                                   <FcGoogle className="text-xl" />
                                   <p>Sign in with Google</p>

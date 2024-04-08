@@ -28,20 +28,23 @@ class GoogleAuthController extends Controller
         } catch (ClientException $e) {
             return response()->json(['error' => 'Invalid credentials provided.'], 422);
         }
-
-        /** @var User $user */
-        $user = User::query()
-            ->firstOrCreate(
-                [
-                    'email' => $socialiteUser->getEmail(),
-                ],
-                [
-                    'email_verified_at' => now(),
-                    'name' => $socialiteUser->getName(),
-                    'google_id' => $socialiteUser->getId()
-                ]
-            );
-
+    
+        // Check if the user already exists in your application's users table
+        $user = User::where('google_id', $socialiteUser->getId())->first();
+    
+        if (!$user) {
+            // User doesn't exist, create a new user
+            $user = User::create([
+                'email' => $socialiteUser->getEmail(),
+                'email_verified_at' => now(),
+                'name' => $socialiteUser->getName(),
+                'google_id' => $socialiteUser->getId(),
+            ]);
+        }
+    
+        // Log in the user using the Auth facade
+        Auth::login($user);
+    
         return response()->json([
             'user' => $user,
             'token' => $user->createToken('google-token')->plainTextToken,
