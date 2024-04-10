@@ -15,8 +15,8 @@ const TopSongs = () => {
                 }
             }).then( res => {
                 if(res.data.songs){
-                    console.log(res.data.songs)
-                    setTopSongs(res.data.songs);
+                    console.log(res.data.songs.tracks)
+                    setTopSongs(res.data.songs.tracks.track);
                 }else{
                     toast.warn(res.data.error);
                 }
@@ -50,14 +50,15 @@ const TopSongs = () => {
                             <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10">
 
                                 {
-                                    topSongs.map((song, index) => {
+                                    topSongs.map(({artist, name, image}, index) => {
                                         return(
                                             <article key={index} className="mx-auto  w-full shadow-2xl max-w-md pb-8 rounded-b-2xl transform duration-500 hover:-translate-y-2">
-                                            <section className="content bg-cover bg-center h-64 rounded-2xl" style={{backgroundImage: `url(http://127.0.0.1:8000/storage/${song.cover_art})`}}>
+                                            <section className="content bg-cover bg-center h-64 rounded-2xl" style={{backgroundImage: `url(${image[3]['#text']})`}}>
                                                 <div className="flex items-end w-full h-full bg-black bg-opacity-20 text-white text-sm font-bold  p-4 rounded-2xl">
                                                     <div className="w-1/2 flex items-center">
                                                         <div className="">
                                                         <CiPlay1 className="text-2xl hover:animate-spin" />
+                                                        
                                                         </div>
                                                     </div>
                                                     <div className="w-1/2 flex items-center flex-row-reverse">
@@ -67,8 +68,8 @@ const TopSongs = () => {
                                             </section>
                                            
                                             <div className="mt-14 px-4">
-                                                <h2 className="mt-4 text-base font-medium text-gray-400">{song.title} by {song.artist.name}</h2>
-                                                <p className="mt-2 text-2xl text-gray-700">{song.album.title}</p>
+                                                <h2 className="mt-4 text-base font-medium text-gray-400">{name} by {artist.name}</h2>
+                                                {/* <p className="mt-2 text-2xl text-gray-700">{song.album.title}</p> */}
                                             </div>
                                         </article>
                                         )

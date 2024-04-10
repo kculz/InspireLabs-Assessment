@@ -1,9 +1,9 @@
+
 export const userStore = (data) => {
     localStorage.setItem("user", JSON.stringify({
-        token: data,
-        
+        token: data.token,
     }))
-    console.log(data);
+    console.log(data)
 };
 
 export const userData = () => {
