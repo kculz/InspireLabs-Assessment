@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favorites', function (Blueprint $table) {
+        Schema::create('favourite_albums', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('artist_id')->nullable();
-            $table->unsignedBigInteger('album_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('album_title')->unique('favourite_albums');
+            $table->string('artist');
+            $table->string('cover_art')->nullable();
+            $table->integer('track_no')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('set null');
-            $table->foreign('album_id')->references('id')->on('albums')->onDelete('set null');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('favourite_albums');
     }
 };

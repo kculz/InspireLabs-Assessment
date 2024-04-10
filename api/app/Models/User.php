@@ -21,9 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'google_id',
-        'email_verified_at',
-        'role'
+        'google_id'
     ];
 
     /**
@@ -34,7 +32,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'role'
     ];
 
     /**
@@ -46,4 +43,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function favouriteAlbums()
+    {
+        return $this->hasMany(FavouriteAlbum::class);
+    }
+
+    public function favouriteSongs()
+    {
+        return $this->hasMany(FavouriteSong::class);
+    }
+
+    public function favouriteArtists()
+    {
+        return $this->hasMany(FavouriteArtist::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
 }
