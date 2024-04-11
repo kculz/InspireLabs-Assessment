@@ -1,0 +1,19 @@
+# Ignore default directories/files
+/node_modules
+/vendor
+/public/storage
+/storage/*.key
+/.idea
+/.vscode
+/.env
+
+# Ignore files generated during development
+Homestead.yaml
+Homestead.json
+.env.example
+.env.local
+.env.testing
+npm-debug.log
+yarn-error.log
+
+screenshots

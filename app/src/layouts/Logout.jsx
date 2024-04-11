@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { googleLogout } from '@react-oauth/google';
 import { Axios } from "../../config";
-import { userData } from "../helper";
 
 const Logout = () => {
   const navigate = useNavigate();

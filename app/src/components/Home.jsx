@@ -40,11 +40,19 @@ const Home = () => {
   const handleArtistInputChange = (event) => {
     const value = event.target.value;
     setArtistQuery(value);
+     // Clear search results if artistQuery is empty
+    if (value === "") {
+      clearSearchResults();
+    }
   };
 
   const handleAlbumInputChange = (event) => {
     const value = event.target.value;
     setAlbumQuery(value);
+     // Clear search results if artistQuery is empty
+    if (value === "") {
+      clearSearchResults();
+    }
   };
 
   const handleKeyPress = (event) => {
@@ -58,6 +66,10 @@ const Home = () => {
     }
   };
 
+  const clearSearchResults = () => {
+    setSearchResults([]);
+  };
+
   return (
     <>
       <div className="mt-24 w-full bg-white dark:bg-gray-900 md:px-32 px-5">
@@ -69,7 +81,7 @@ const Home = () => {
             <input
               type="search"
               id="search-artist"
-              className="rounded-none rounded-e-lg bg-blue-700/15 border border-blue-300 text-blue-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"
+              className="rounded-none rounded-e-lg  border border-blue-300 text-blue-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"
               placeholder="Search Artist"
               value={artistQuery}
               onChange={handleArtistInputChange}
@@ -85,7 +97,7 @@ const Home = () => {
             <input
               type="search"
               id="search-album"
-              className="rounded-none rounded-e-lg bg-blue-700/15 border border-blue-300 text-blue-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"
+              className="rounded-none rounded-e-lg  border border-blue-300 text-blue-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"
               placeholder="Search Albums"
               value={albumQuery}
               onChange={handleAlbumInputChange}

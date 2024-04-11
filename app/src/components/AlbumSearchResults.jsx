@@ -2,7 +2,6 @@
 import { FcMusic } from "react-icons/fc";
 import { MdFavoriteBorder } from "react-icons/md";
 import { Axios } from '../../config';
-import { userData } from '../helper';
 import { toast } from "react-toastify";
 
 // eslint-disable-next-line react/prop-types
@@ -30,43 +29,39 @@ const AlbumSearchResults = ({ results }) => {
     }
   return (
     <div>
-
-
-<div className="lg:flex block gap-5">
-  <article className="p-5 min-h-116 max-w-sm w-full content bg-cover bg-center h-64  bg-gray-200 rounded-xl text-gray-600 transform duration-500 hover:-translate-y-1 cursor-pointer" style={{backgroundImage: `url(${cover_art})`}}>
-   
-  </article>
-  <div className="flex flex-col justify-end">
-    <div className="p-5 text-white">
-        <h1 className="mt-5 text-2xl md:text-3xl font-light leading-snug min-h-33">
-        {artist}
-        </h1>
-        <div className="mt-1 ">
-            <div className="mt-1 flex justify-between">
-                <div>
-                <span className="text-xl text-gray-300">Album - </span>
-                <span className="font-bold text-xl">{title}</span>
+        <div className="lg:flex block gap-5">
+          <article className="p-5 min-h-116 max-w-sm w-full content bg-cover bg-center h-64  bg-gray-200 rounded-xl text-gray-600 transform duration-500 hover:-translate-y-1 cursor-pointer" style={{backgroundImage: `url(${cover_art})`}}>
+          
+          </article>
+          <div className="flex flex-col justify-end">
+            <div className="p-5 text-white">
+                <h1 className="mt-5 text-2xl md:text-3xl font-light leading-snug min-h-33">
+                {artist}
+                </h1>
+                <div className="mt-1 ">
+                    <div className="mt-1 flex justify-between">
+                        <div>
+                        <span className="text-xl text-gray-300">Album - </span>
+                        <span className="font-bold text-xl">{title}</span>
+                        </div>
+                        <MdFavoriteBorder 
+                        className='text-2xl text-red-600'
+                        // eslint-disable-next-line react/prop-types
+                        onClick={() => addAlbumToFav(title, artist, cover_art, tracks.length)}
+                        />
+                    </div>
                 </div>
-                <MdFavoriteBorder 
-                className='text-2xl text-red-600'
-                // eslint-disable-next-line react/prop-types
-                onClick={() => addAlbumToFav(title, artist, cover_art, tracks.length)}
-                />
+                <div className="mt-1 flex justify-between">
+                <span className="p-3 pl-0 font-bold">release date:</span>
+                <span className="p-3 text-base ">
+                {released}
+                </span>
+                </div>
+                <p className='text-sm'>{summary.split('. ')[0]}</p>
             </div>
+          </div>
         </div>
-        <div className="mt-1 flex justify-between">
-        <span className="p-3 pl-0 font-bold">release date:</span>
-        <span className="p-3 text-base ">
-        {released}
-        </span>
-        </div>
-        <p className='text-sm'>{summary.split('. ')[0]}</p>
-    </div>
-  </div>
-</div>
-        
-       
-
+      
         <h1 className='text-xl md:text-3xl md:font-bold font-semibold text-gray-900 dark:text-white mt-5'>Tracks list</h1>
         <div className="flex flex-col  my-5">
           {
@@ -91,30 +86,5 @@ const AlbumSearchResults = ({ results }) => {
     </div>
   );
 };
-
-// AlbumSearchResults.propTypes = {
-//   results: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       title: PropTypes.string.isRequired,
-//       artist: PropTypes.shape({
-//         name: PropTypes.string.isRequired,
-//         bio: PropTypes.string.isRequired,
-//         similar: PropTypes.object.isRequired
-//       }),
-//       album: PropTypes.shape({
-//         title: PropTypes.string.isRequired,
-//       }),
-//       toptracks: PropTypes.shape({
-//         track: PropTypes.array.isRequired,
-//       }),
-//       topalbums: PropTypes.shape({
-//         album: PropTypes.array.isRequired,
-
-//       })
-//       // Add additional prop types as needed
-//     })
-//   ).isRequired,
-// };
 
 export default AlbumSearchResults;

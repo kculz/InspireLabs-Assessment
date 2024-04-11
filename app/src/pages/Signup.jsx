@@ -2,7 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { Axios } from "../../config";
 import { useState } from "react";
-import { userData, userStore } from "../helper";
+import { userStore } from "../helper";
 import { toast } from "react-toastify";
 
 const Signup = () => {

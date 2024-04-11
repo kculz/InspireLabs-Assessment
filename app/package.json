@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esbuild/linux-x64": "^0.20.2",
     "@react-oauth/google": "^0.12.1",
+    "@rollup/rollup-linux-x64-gnu": "^4.14.1",
     "agent-base": "^6.0.1",
     "axios": "^1.6.8",
     "axios-retry": "^4.1.0",

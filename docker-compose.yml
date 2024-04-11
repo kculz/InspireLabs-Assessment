@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./api 
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"  # Map the container's port 80 to the host's port 80
+    volumes:
+      - ./api:/var/www/html  # Mount the Laravel project directory
+
+  frontend:
+    build:
+      context: ./app  
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"  # Map the container's port 3000 to the host's port 3000
+    volumes:
+      - ./app:/app  # Mount the React project directory
