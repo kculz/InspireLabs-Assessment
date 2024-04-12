@@ -17,4 +17,4 @@ RUN npm run build
 EXPOSE 5173
 
 # Serve the built React application
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "dev"]

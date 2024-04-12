@@ -15,7 +15,7 @@ const Header = () => {
             <div className="flex justify-between items-center px-10 md:px-32 h-full w-full">
                 <h1 className="text-2xl lg:text-3xl font-semibold"><Link onClick={handleNav} to="home">
                         <div className="flex items-center justify-center">
-                        <FcMusic className="text-7xl font-Luckiest animate-bounce"/>
+                        <FcMusic to="/music" className="text-7xl font-Luckiest animate-bounce"/>
                         <h1 className="text-5xl text-gray-900 dark:text-white font-Luckiest">Music</h1>
                         </div>
                     </Link></h1>

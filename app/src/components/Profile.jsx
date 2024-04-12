@@ -33,7 +33,7 @@ const Profile = () => {
                   <p className="text-xs">Favourite Artists</p>
                     <div className="flex gap-5">
                       {
-                        data.artists && data.artists.map(({artist}, index) => {
+                        data.artists && data.artists.map(({artist}) => {
                           return (
                             `# ${artist}`
                           )

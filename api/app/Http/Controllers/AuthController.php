@@ -29,7 +29,7 @@ class AuthController extends Controller
         $socialiteUser = Socialite::driver('google')->stateless()->user();
        
     
-        // Check if the user already exists in your application's users table
+        //Check if the user already exists in your application's users table
         $user = User::where('google_id', $socialiteUser->getId())->first();
     
         if (!$user) {
@@ -47,11 +47,14 @@ class AuthController extends Controller
         // Log in the user using the Auth facade
         Auth::login($user);
     
-        return response()->json([
+        $data = [
             'user' => $user,
             'token' => $user->createToken('google-token')->plainTextToken,
             'token_type' => 'Bearer',
-        ]);
+        ];
+        
+        return response()->json($data);
+
     }
 
     public function register(Request $request)

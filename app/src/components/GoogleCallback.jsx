@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Axios } from "../../config";
 import { userStore } from "../helper";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const GoogleCallback = () => {
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ const GoogleCallback = () => {
     const fetchData = async () => {
       try {
         const res = await Axios.get(
-          `http://localhost:8000/api/auth/callback${location.search}`,
+          `/auth/callback${location.search}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -21,9 +22,16 @@ const GoogleCallback = () => {
             }
           }
         );
-        userStore(res.data.token);
-        setLoading(false);
-        setData(res.data);
+        console.log(res.data.token)
+        if(res.data){
+          userStore(res.data);
+          setLoading(false);
+          setData(res.data);
+          console.log(res.data)
+        }else{
+          toast.warn("Something went wrong")
+        }
+
       } catch (err) {
         console.log(err);
       }
@@ -44,6 +52,7 @@ const GoogleCallback = () => {
             Authorization: `${data.token_type} ${data.token}`
           }
         });
+        console.log(data);
         setUser(res.data);
       } catch (err) {
         console.log(err);
@@ -63,10 +72,10 @@ const GoogleCallback = () => {
   }, [user, navigate]);
 
   if (loading) {
-    return <h1 className="text-center text-3xl font-bold">Redirecting...</h1>;
+    return <h1 className="text-center text-3xl font-bold dark:text-white">Redirecting...</h1>;
   } else if(!user){
     return(
-        <p className="text-center text-3xl font-bold">Loading...</p>
+        <p className="text-center text-3xl font-bold dark:text-white">Loading...</p>
     )
   }else{
     return (

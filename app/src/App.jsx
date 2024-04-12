@@ -14,13 +14,14 @@ function App() {
         <Routes>
           <Route path="/*" element={<NotFound />} />
           <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Landing />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/auth/google/callback" element={<GoogleCallback />} />
           
           <Route element={<ProtectedRoute />} >
             <Route path="/logout" element={<Logout />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/music" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/all-songs" element={<AllSongs />} />
           </Route>

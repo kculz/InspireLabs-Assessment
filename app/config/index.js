@@ -21,4 +21,4 @@ Axios.interceptors.request.use((config) => {
   return Promise.reject(error);
 })
 
-axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
+axiosRetry(axios, { retries: 30, retryDelay: axiosRetry.exponentialDelay });

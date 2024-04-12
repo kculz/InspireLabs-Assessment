@@ -49,6 +49,53 @@ $ git clone https://github.com/kculz/InspireLabs-Assessment.git
 ```
 docker-compose up
 ```
+
+# NB | NOTE
+### App is not working when running docker
+- To get Started use the following Method after cloning the project or downloading.
+
+## Run frontend app (React App)
+
+1. Open Terminal or Command prompt.
+2. Change current directory to `app`.
+```
+$ cd app
+```
+3. Install frontend dependences by running the following command
+```
+$ npm install
+```
+4. Run the following command to run frontend.
+```
+$ npm run dev
+```
+
+## Run backend app (Laravel api)
+
+1. Open Terminal or Command prompt.
+2. Change current directory to `api`.
+```
+$ cd api
+```
+3. Install backend dependences by running the following command
+```
+$ composer install
+```
+-  #### Config DB and ENV
+    - Copy contents of `.emv.example`
+    - Change the `DB` env variable to you desired config settings
+
+4. Run the following command to migrate db
+```
+$ php artisan migrate
+```
+5. Run the following command to start server
+```
+$ php artisan serve
+```
+
+
+
 - This command will start all the services defined in the docker-compose.yml file.
 4. Once the containers are up and running, open your web browser and visit [http://localhost:5173](http://localhost:5173) to see the project running.
 
