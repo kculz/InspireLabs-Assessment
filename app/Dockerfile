@@ -2,10 +2,10 @@
 FROM node:20
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /home/node/app
 
 # Copy the React project files to the container
-COPY . /app
+COPY . ./
 
 # Install dependencies
 RUN npm install
@@ -14,7 +14,7 @@ RUN npm install
 RUN npm run build
 
 # Set the port to 5173 (for development)
-EXPOSE 5173
+EXPOSE 3000
 
 # Serve the built React application
 CMD ["npm", "run", "dev"]
