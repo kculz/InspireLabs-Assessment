@@ -45,6 +45,3 @@ RUN composer install --no-dev --no-interaction --no-progress --optimize-autoload
 
 # Set the Apache port to 80
 EXPOSE 80
-
-# Run the Apache server
-CMD ["apache2-foreground"]

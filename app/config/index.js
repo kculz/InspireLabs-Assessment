@@ -2,7 +2,7 @@ import axios from "axios";
 import axiosRetry from "axios-retry";
 import { userData } from "../src/helper";
 
-const baseUrl = "http://127.0.0.1:8000/api";
+const baseUrl = "http://127.0.0.1:8080/api";
 
 export const Axios = axios.create({
     withCredentials: true,

@@ -2,7 +2,6 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { Axios } from "../../config";
 import { useState } from "react";
-import { userStore } from "../helper";
 import { toast } from "react-toastify";
 
 const Signup = () => {
@@ -24,11 +23,16 @@ const Signup = () => {
         }
     
         await Axios.post('/register', values).then(res => {
-        
-            toast.info("welcome")
-            userStore(res.data.data)
-            navigate('/home');
-            window.location.reload();
+            const statusCode = res.status
+            if (statusCode === 200){
+                console.log("success");
+                console.log(res)
+                toast.info("welcome")
+                navigate('/signin');
+                window.location.reload();
+            }else{
+                toast.warn("Erroor whilst logging in . PLease try again.")
+            }     
           
         }).catch(err => {
           console.log(err);
@@ -40,7 +44,7 @@ const Signup = () => {
         await Axios.get('/auth/google').then( res => {
     
           console.log(res.data);
-          const relativeUrl = res.data.url.replace('http://localhost:5173', '');
+          const relativeUrl = res.data.url.replace('http://localhost:3000', '');
           window.location.href = relativeUrl;
         }).catch(err => {
           console.log(err);

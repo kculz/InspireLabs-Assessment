@@ -1,19 +1,45 @@
 version: "3.9"
 services:
-  backend:
-    build:
-      context: ./api 
-      dockerfile: Dockerfile
-    ports:
-      - "8080:80"  # Map the container's port 80 to the host's port 80
-    volumes:
-      - ./api:/var/www/html  # Mount the Laravel project directory
-
   frontend:
     build:
       context: ./app  
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"  # Map the container's port 3000 to the host's port 3000
+      - "3000:3000"
     volumes:
-      - ./app:/app  # Mount the React project directory
+      - ./app:/app
+
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      DB_CONNECTION: mysql
+      DB_DATABASE: inspirelabs_test_db
+      DB_USERNAME: root
+    ports:
+      - "3306:3306"
+
+  backend:
+    build:
+      context: ./api 
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./api:/var/www/html
+    command: sh -c "apache2-foreground  && php artisan migrate --force"
+    environment:
+      DB_CONNECTION: mysql
+      DB_DATABASE: inspirelabs_test_db
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      GOOGLE_CLIENT_ID: 961920518081-6cskce889v8tbf937vjknc13qcqi18rg.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: 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
+      LAST_API_KEY: fa31e13bea0870dfd85018a236db96f8
+      LASTAPI_SHARED_SECRET: f9b27fa5827bc4b23e819bd8e3171d17
+      LASTAPI_REGISTERED_TO: greycode095
+      JWT_SECRET: cvghjkrcvbh4dvfkmfdvmd
+    depends_on:
+      - mysql-db
